@@ -1,0 +1,7 @@
+{
+    "require": {
+        "setasign/fpdf": "^1.8",
+        "league/csv": "^9.19",
+      "ext-pdo": "*"
+    }
+}
