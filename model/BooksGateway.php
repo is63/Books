@@ -28,7 +28,7 @@ class booksGateway extends Database
         return $books;
     }
 
-    public function getTotalNumPages()
+    public function getNumPages()
     {
         $pdo = Database::connect();
         $booksPagina = 10;
@@ -70,7 +70,7 @@ class booksGateway extends Database
         $sql->execute(array($id));
     }
 
-    public function generarPDF($orderby, $page, $numeroLibros)
+    public function generarPDF($orderby, $page, $numLibs)
     {
         // Se conecta a la base de datos;
         ob_start();
@@ -89,13 +89,13 @@ class booksGateway extends Database
         if($page == null){
             $page = '1';
         }
-        $numeroLibros = $_GET["numeroLibros"];
-        if($numeroLibros == null){
-            $numeroLibros = '1';
+        $numLibs = $_GET["numbLibs"];
+        if($numLibs == null){
+            $numLibs = '1';
         }
         $inicio = ($page - 1) * 10;
 
-        $pdf->Table($pdo, "SELECT * FROM books ORDER BY $orderby ASC LIMIT $inicio,$numeroLibros");
+        $pdf->Table($pdo, "SELECT * FROM books ORDER BY $orderby ASC LIMIT $inicio,$numLibs");
         $pdf->Output();
         ob_end_flush();
 

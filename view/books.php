@@ -21,7 +21,7 @@ $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'id';
         <form method="GET">
             <input type="hidden" name="pagina" value="<?php echo $pagina ?>" >
             <input type="hidden" name="orderby" value="<?php echo $orderby ?>" >
-            <input type="number" placeholder="Number of books" name="numeroLibros" min="1">
+            <input type="number" placeholder="Number of books" name="numbLibs" min="1">
             <input id="inputSubmit" type="submit" name="op" value="Generar PDF">
         </form>
     </div>

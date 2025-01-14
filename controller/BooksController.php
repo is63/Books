@@ -22,7 +22,7 @@ class BooksController
         try {
 
             if (!$op || $op == 'list') {
-                $this->listBooks();
+                $this->booksList();
             } elseif ($op == 'new') {
                 $this->saveBook();
             } elseif ($op == 'edit') {
@@ -41,11 +41,11 @@ class BooksController
         }
     }
 
-    public function listBooks()
+    public function booksList()
     {
         $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : null;
         $books = $this->booksService->getAllBooks($orderby);
-        $totalPaginas = $this->booksService->getTotalNumPages();
+        $totalPaginas = $this->booksService->getNumPages();
         include ROOT_PATH . '/view/books.php';
 
     }
@@ -71,7 +71,7 @@ class BooksController
             $pages = isset($_POST['pages']) ? trim($_POST['pages']) : null;
 
             try {
-                $this->booksService->createNewBook($isbn, $title, $author, $publisher, $pages);
+                $this->booksService->createBook($isbn, $title, $author, $publisher, $pages);
                 $this->redirect('index.php');
                 return;
             } catch (ValidationException $e) {
@@ -151,7 +151,7 @@ class BooksController
     {
         $orderby = isset($_GET['orderby']) && !empty($_GET['orderby']) ? $_GET['orderby'] : 'id';
         $pagina = isset($_GET['pagina']) && !empty($_GET['pagina']) ? $_GET['pagina'] : '1';
-        $numeroLibros = isset($_GET['numerolibros']) && !empty($_GET['numerolibros']) ? $_GET['numerolibros'] : '1';
-        $this->booksService->generarPDF($orderby, $pagina, $numeroLibros );
+        $numLibs = isset($_GET['numerolibros']) && !empty($_GET['numerolibros']) ? $_GET['numerolibros'] : '1';
+        $this->booksService->generarPDF($orderby, $pagina, $numLibs );
     }
 }

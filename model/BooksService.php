@@ -64,7 +64,7 @@ class BooksService extends BooksGateway
         throw new ValidationException($errors);
     }
 
-    public function createNewBook($isbn, $title, $author, $publisher, $pages)
+    public function createBook($isbn, $title, $author, $publisher, $pages)
     {
         try {
             self::connect();
@@ -103,10 +103,10 @@ class BooksService extends BooksGateway
         }
     }
 
-    public function generarPDF($orderby, $pagina, $numeroLibros){
+    public function generarPDF($orderby, $pagina, $numLibs){
         try{
             self::connect();
-            $this->booksGateway->generarPDF($orderby, $pagina, $numeroLibros);
+            $this->booksGateway->generarPDF($orderby, $pagina, $numLibs);
             self::disconnect();
         }catch (Exception $e){
             throw $e;
