@@ -16,15 +16,10 @@ $pagina = (!isset($_GET['pagina']) || $_GET['pagina'] < 1) ? 1 : (int)$_GET['pag
 $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'id';
 ?>
 <div id="operations">
+    <br>
     <div id="newBook"><a href="index.php?op=new"><i class="fa-solid fa-circle-plus"></i> Add new book</a></div>
-    <div id="pdf">
-        <form method="GET">
-            <input type="hidden" name="pagina" value="<?php echo $pagina ?>" >
-            <input type="hidden" name="orderby" value="<?php echo $orderby ?>" >
-            <input type="number" placeholder="Number of books" name="numbLibs" min="1">
-            <input id="inputSubmit" type="submit" name="op" value="Generar PDF">
-        </form>
-    </div>
+    <br>
+
 </div>
 <br>
 <table class="books" border="0" cellpadding="0" cellspacing="0">
@@ -51,19 +46,29 @@ $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'id';
             <td><?php echo htmlentities($book->author); ?></td>
             <td><?php echo htmlentities($book->publisher); ?></td>
             <td><?php echo htmlentities($book->pages); ?></td>
-            <td><a style="margin-right: 5px;" href="index.php?op=edit&id=<?php echo $book->id; ?>">edit</a>
+            <td><a style="margin-right: 5px;" href="index.php?op=edit&id=<?php echo $book->id; ?>">Edit</a>
                 <a href="index.php?op=delete&id=<?php echo $book->id; ?>"
-                   onclick="return confirm('Are you sure you want to delete?');">delete</a></td>
+                   onclick="return confirm('Are you sure you want to delete?');">Delete</a></td>
         </tr>
     <?php endforeach; ?>
     </tbody>
+
 </table>
+
+<div id="pdf">
+    <form method="GET">
+        <input type="hidden" name="pagina" value="<?php echo $pagina ?>" >
+        <input type="hidden" name="orderby" value="<?php echo $orderby ?>" >
+        <input type="number" placeholder="Number of books to print" name="numbLibs" min="1">
+        <input id="inputSubmit" type="submit" name="op" value="Generar PDF">
+    </form>
+</div>
 
 <div id="pagination">
     <?php
     if ($pagina > 1): ?>
-        <a href="?orderby=<?php echo $orderby ?>&pagina=1">&laquo; First |</a>
-        <a href="?orderby=<?php echo $orderby ?>&pagina=<?= $pagina - 1 ?>">&larr; Previous</a>
+        <a href="?orderby=<?php echo $orderby ?>&pagina=1"><- <- FirstPage |</a>
+        <a href="?orderby=<?php echo $orderby ?>&pagina=<?= $pagina - 1 ?>"><- PreviousPage</a>
     <?php endif;
 
     ?>
@@ -71,8 +76,8 @@ $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'id';
     <?php
 
     if ($pagina < $totalPaginas): ?>
-        <a href="?orderby=<?php echo $orderby ?>&pagina=<?= $pagina + 1 ?>">Next &rarr;</a>
-        <a href="?orderby=<?php echo $orderby ?>&pagina=<?= $totalPaginas ?>">| Last &raquo;</a>
+        <a href="?orderby=<?php echo $orderby ?>&pagina=<?= $pagina + 1 ?>">NextPage -></a>
+        <a href="?orderby=<?php echo $orderby ?>&pagina=<?= $totalPaginas ?>">| LastPage -> -></a>
     <?php endif; ?>
 </div>
 </body>

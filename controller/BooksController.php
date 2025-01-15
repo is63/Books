@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/model/Autoloader.php';
-require_once ROOT_PATH . '/model/BooksService.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/BooksService.php';
 class BooksController
 {
     private $booksService = null;
