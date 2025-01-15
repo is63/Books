@@ -2,14 +2,14 @@
 
 class Database
 {
-    private static $dbName = 'if0_37391483_crud_mvc_oop';
-    //private static $dbName = 'crud_mvc_oop';
-    private static $dbHost = 'sql206.infinityfree.com';
-    //private static $dbHost = 'localhost';
-    private static $dbUsername = 'if0_37391483';
-    //private static $dbUsername = 'root';
-    private static $dbUserPassword = 'rQ0fMHEb5O';
-    //private static $dbUserPassword = 'root';
+    //private static $dbName = 'if0_37391483_crud_mvc_oop';
+    private static $dbName = 'crud_mvc_oop';
+    //private static $dbHost = 'sql206.infinityfree.com';
+    private static $dbHost = 'localhost';
+    //private static $dbUsername = 'if0_37391483';
+    private static $dbUsername = 'root';
+    //private static $dbUserPassword = 'rQ0fMHEb5O';
+    private static $dbUserPassword = 'root';
 
     private static $conn = null;
 
